@@ -1,0 +1,1137 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={DS4B},
+  pdfauthor={jshs},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{DS4B}
+\author{jshs}
+\date{2023-03-18}
+
+\begin{document}
+\maketitle
+
+\hypertarget{primer-modelo-de-machine-learning-predictivo}{%
+\section{Primer modelo de machine learning
+predictivo}\label{primer-modelo-de-machine-learning-predictivo}}
+
+\hypertarget{enfoque-con-un-perfil-de-negocio.}{%
+\subsection{Enfoque con un perfil de
+negocio.}\label{enfoque-con-un-perfil-de-negocio.}}
+
+\begin{itemize}
+\tightlist
+\item
+  Se analizara desde la practica
+\item
+  No habra mucha formula matematica, pero si se usaran algoritmos y se
+  veran sus usos en la practica.
+\item
+  Evidencia empirica.
+\end{itemize}
+
+\hypertarget{preguntas-validas-para-hacerse}{%
+\subsection{Preguntas validas para
+hacerse:}\label{preguntas-validas-para-hacerse}}
+
+\begin{itemize}
+\tightlist
+\item
+  ¿El por que de cada tecnica, cuando hay que aplicarla, como
+  interpretar sus resultados, etc?
+\item
+  El valor estaba en la parte practica.
+\item
+  Saber lo que se quiere.
+\end{itemize}
+
+\hypertarget{a-parte-de-machine-learning-predictivo-habilidad-mas-demandada-la-ciencia-de-datos-abarca}{%
+\subsection{A parte de machine learning predictivo (habilidad mas
+demandada) la ciencia de datos
+abarca:}\label{a-parte-de-machine-learning-predictivo-habilidad-mas-demandada-la-ciencia-de-datos-abarca}}
+
+\begin{itemize}
+\tightlist
+\item
+  Analitica
+\item
+  Machine learning
+\item
+  Estadistica ``profundizar en cartografia''
+\item
+  Ciencias de computacion
+\item
+  Comunicacion
+\item
+  Matematicas
+\item
+  Visualizacion
+\item
+  IA
+\item
+  Deep learning
+\item
+  Ingenieria de datos
+\end{itemize}
+
+Claves: - Prevencion de abandono de clientes - campañas comerciales
+personalizadas para cada cliente - Scoring de riesgos - Identificacion
+de fraude - Mantenimiento preventivo
+
+Nota: Simbolo tuerca y chunk output in console
+
+\hypertarget{opciones-generales}{%
+\subsubsection{0. Opciones generales:}\label{opciones-generales}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{options}\NormalTok{(}\AttributeTok{scipen=}\DecValTok{999}\NormalTok{) }\CommentTok{\#desactiva la notacion cientifica. "El numero sale tal cual"}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{instalamos-y-cargamos-las-librerias-necesarias}{%
+\subsection{1. Instalamos y cargamos las librerias
+necesarias:}\label{instalamos-y-cargamos-las-librerias-necesarias}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Instalar librerías}
+\CommentTok{\#install.packages(\textquotesingle{}dplyr\textquotesingle{}) \#para manipular datos}
+\CommentTok{\#install.packages(\textquotesingle{}skimr\textquotesingle{}) \#para exploración inicial}
+\CommentTok{\#install.packages(\textquotesingle{}lubridate\textquotesingle{}) \#para manipular fechas}
+\CommentTok{\#install.packages(\textquotesingle{}tidyr\textquotesingle{}) \#para manipular datos}
+\CommentTok{\#install.packages(\textquotesingle{}ggplot2\textquotesingle{}) \#para hacer gráficos}
+
+\CommentTok{\#Cargar librerías}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(skimr)}
+\FunctionTok{library}\NormalTok{(lubridate)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'lubridate'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     date, intersect, setdiff, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyr)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{contexto-del-negocio}{%
+\subsubsection{CONTEXTO DEL NEGOCIO}\label{contexto-del-negocio}}
+
+Es un caso de mantenimiento preventivo, consiste en predecir con una
+serie de sensores y variables de cada maquina, cuando una maquina se va
+a estropiar o no y no esperar a que se dañe.
+
+\hypertarget{metodologias-para-la-modelizacion-avanzada-de-datos-en-este-caso-modo-horizontal-cada-fase-tiene-mas-en-vertical-pero-no-se-abarcaran-en-este-proyecto}{%
+\subsubsection{Metodologias para la modelizacion avanzada de datos: (En
+este caso modo horizontal, cada fase tiene mas en vertical pero no se
+abarcaran en este
+proyecto)}\label{metodologias-para-la-modelizacion-avanzada-de-datos-en-este-caso-modo-horizontal-cada-fase-tiene-mas-en-vertical-pero-no-se-abarcaran-en-este-proyecto}}
+
+\begin{itemize}
+\tightlist
+\item
+  Importacion y muestreo
+\item
+  Calidad de los datos
+\item
+  Transformacion
+\item
+  Modelizacion
+\item
+  Evaluacion
+\item
+  Implantacion
+\end{itemize}
+
+\hypertarget{cargamos-los-datos}{%
+\subsection{2. Cargamos los datos}\label{cargamos-los-datos}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\NormalTok{DataSetFallosMaquina }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"C:/Users/LAURA/Desktop/cursos data science/isaac\_data\_science/DataSetFallosMaquina.csv"}\NormalTok{, }
+    \AttributeTok{sep =} \StringTok{";"}\NormalTok{)}
+\FunctionTok{View}\NormalTok{(DataSetFallosMaquina)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{analisis-inicial}{%
+\subsection{3.Analisis inicial}\label{analisis-inicial}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glimpse}\NormalTok{(DataSetFallosMaquina) }\CommentTok{\#vision de todas las variables, tipo, numero de filas y numero de columnas}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 8,784
+## Columns: 20
+## $ Temperature                  <int> 67, 68, 64, 63, 65, 67, 67, 67, 65, 63, 6~
+## $ Humidity                     <int> 82, 77, 76, 80, 81, 84, 83, 76, 80, 80, 8~
+## $ Operator                     <chr> "Operator1", "Operator1", "Operator1", "O~
+## $ Measure1                     <int> 291, 1180, 1406, 550, 1928, 398, 847, 102~
+## $ Measure2                     <int> 1, 1, 1, 1, 1, 1, 0, 2, 2, 0, 2, 3, 0, 1,~
+## $ Measure3                     <int> 1, 1, 1, 1, 2, 2, 2, 1, 0, 0, 2, 1, 0, 1,~
+## $ Measure4                     <int> 1041, 1915, 511, 1754, 1326, 1901, 1849, ~
+## $ Measure5                     <int> 846, 1194, 1577, 1834, 1082, 1801, 1141, ~
+## $ Measure6                     <int> 334, 637, 1121, 1413, 233, 1153, 1609, 95~
+## $ Measure7                     <int> 706, 1093, 1948, 1151, 1441, 1085, 982, 1~
+## $ Measure8                     <int> 1086, 524, 1882, 945, 1736, 1547, 1159, 1~
+## $ Measure9                     <int> 256, 919, 1301, 1312, 1033, 2005, 672, 42~
+## $ Measure10                    <int> 1295, 245, 273, 1494, 1549, 477, 1128, 16~
+## $ Measure11                    <int> 766, 403, 1927, 1755, 802, 1217, 663, 850~
+## $ Measure12                    <int> 968, 723, 1123, 1434, 1819, 1632, 1114, 3~
+## $ Measure13                    <int> 1185, 1446, 717, 502, 1616, 1324, 1838, 1~
+## $ Measure14                    <int> 1355, 719, 1518, 1336, 1507, 1854, 290, 7~
+## $ Measure15                    <int> 1842, 748, 1689, 711, 507, 1739, 1192, 84~
+## $ Hours.Since.Previous.Failure <int> 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 1~
+## $ Failure                      <chr> "No", "No", "No", "No", "No", "No", "No",~
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{skim}\NormalTok{(DataSetFallosMaquina) }\CommentTok{\#estadisticas basicas y grafica de distribucion de cada variable}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}ll@{}}
+\caption{Data summary}\tabularnewline
+\toprule()
+\endhead
+Name & DataSetFallosMaquina \\
+Number of rows & 8784 \\
+Number of columns & 20 \\
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ & \\
+Column type frequency: & \\
+character & 2 \\
+numeric & 18 \\
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ & \\
+Group variables & None \\
+\bottomrule()
+\end{longtable}
+
+\textbf{Variable type: character}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1944}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1389}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1944}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0556}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0556}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0833}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1528}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+skim\_variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n\_missing
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+complete\_rate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+min
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+max
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+empty
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n\_unique
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+whitespace
+\end{minipage} \\
+\midrule()
+\endhead
+Operator & 0 & 1 & 9 & 9 & 0 & 8 & 0 \\
+Failure & 0 & 1 & 2 & 3 & 0 & 2 & 0 \\
+\bottomrule()
+\end{longtable}
+
+\textbf{Variable type: numeric}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.2843}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0980}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1373}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0784}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0686}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0392}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0686}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0686}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0490}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0490}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0588}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+skim\_variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n\_missing
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+complete\_rate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+sd
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p0
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p25
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p50
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p75
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p100
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+hist
+\end{minipage} \\
+\midrule()
+\endhead
+Temperature & 0 & 1 & 64.03 & 2.87 & 5 & 62.00 & 64.0 & 66 & 78 &
+▁▁▁▆▇ \\
+Humidity & 0 & 1 & 83.34 & 4.84 & 65 & 80.00 & 83.0 & 87 & 122 &
+▁▇▂▁▁ \\
+Measure1 & 0 & 1 & 1090.90 & 537.10 & 155 & 629.00 & 1096.0 & 1555 &
+2011 & ▇▇▇▇▇ \\
+Measure2 & 0 & 1 & 1.49 & 1.12 & 0 & 0.00 & 1.0 & 2 & 3 & ▇▇▁▇▇ \\
+Measure3 & 0 & 1 & 1.00 & 0.82 & 0 & 0.00 & 1.0 & 2 & 2 & ▇▁▇▁▇ \\
+Measure4 & 0 & 1 & 1071.63 & 536.52 & 155 & 608.75 & 1058.0 & 1533 &
+2011 & ▇▇▇▇▇ \\
+Measure5 & 0 & 1 & 1075.82 & 533.16 & 155 & 606.00 & 1077.0 & 1541 &
+2011 & ▇▇▇▇▇ \\
+Measure6 & 0 & 1 & 1076.02 & 534.00 & 155 & 623.00 & 1072.0 & 1537 &
+2011 & ▇▇▇▇▇ \\
+Measure7 & 0 & 1 & 1086.90 & 538.20 & 155 & 621.00 & 1089.0 & 1558 &
+2011 & ▇▇▇▇▇ \\
+Measure8 & 0 & 1 & 1077.28 & 537.19 & 155 & 612.00 & 1074.0 & 1541 &
+2011 & ▇▇▇▇▇ \\
+Measure9 & 0 & 1 & 1082.01 & 532.98 & 155 & 631.00 & 1078.0 & 1532 &
+2011 & ▇▇▇▇▇ \\
+Measure10 & 0 & 1 & 1082.40 & 537.58 & 155 & 619.00 & 1080.0 & 1547 &
+2011 & ▇▇▇▇▇ \\
+Measure11 & 0 & 1 & 1088.72 & 535.00 & 155 & 627.00 & 1093.0 & 1550 &
+2011 & ▇▇▇▇▇ \\
+Measure12 & 0 & 1 & 1088.33 & 533.30 & 155 & 627.00 & 1082.0 & 1552 &
+2011 & ▇▇▇▇▇ \\
+Measure13 & 0 & 1 & 1076.76 & 535.11 & 155 & 609.00 & 1067.0 & 1539 &
+2011 & ▇▇▇▇▇ \\
+Measure14 & 0 & 1 & 1088.31 & 537.26 & 155 & 617.00 & 1088.5 & 1560 &
+2011 & ▇▇▇▇▇ \\
+Measure15 & 0 & 1 & 1082.39 & 537.53 & 155 & 614.00 & 1076.0 & 1550 &
+2011 & ▇▇▇▇▇ \\
+Hours.Since.Previous.Failure & 0 & 1 & 217.34 & 151.75 & 1 & 90.00 &
+195.0 & 324 & 666 & ▇▆▅▂▁ \\
+\bottomrule()
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#knitr::kable(skim(DataSetFallosMaquina))}
+\end{Highlighting}
+\end{Shaded}
+
+Conclusiones de ese primer analisis inicial: - No hay datos nulos
+Problemas con tipos de variables: - Measure 2 y measure 3 tambien
+parecen mas factores que enteros (lo indica el grafico ya que tienen
+valores distintos) - El minimo y el segundo cuartil de temperatura
+parece que hay dats atipicos, el primero es 5 y ya el segundo son 62
+mientras que en el 3 son 64, esto nos indica que la distribucion puede
+estar sesgada y escolada hacia la derecha, puede haber un valor muy bajo
+de temperatura pero normalmente oscila entre 62 - 78
+
+\hypertarget{analizamos-en-mayor-detalle-la-temperatura}{%
+\subsection{3.1 Analizamos en mayor detalle la
+temperatura}\label{analizamos-en-mayor-detalle-la-temperatura}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{attach}\NormalTok{(DataSetFallosMaquina)}
+\FunctionTok{ggplot}\NormalTok{(DataSetFallosMaquina,}\AttributeTok{x=}\DecValTok{1}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{geom\_boxplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{Temperature)) }\CommentTok{\#tipo de grafico diagrama de cajas, distribucion llamada aes.}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1_video_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+Nota: Se puede haber que hay cuatro datos que se estan saliendo de los
+rangos de temperatura
+
+\hypertarget{calidad-de-datos}{%
+\subsection{4.Calidad de datos}\label{calidad-de-datos}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Corregimos los tipos de variables y los atípicos}
+\CommentTok{\#mutate para crear variables o para corregir las que tenemos.}
+\CommentTok{\# \%\textgreater{}\% ese simbolo es para encadenar instrucciones una de tras de otra, podemos hacer cuatro cosas seguidas e ir poniendo el simbolo}
+
+\NormalTok{DataSetFallosMaquina }\OtherTok{\textless{}{-}}\NormalTok{ DataSetFallosMaquina }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Measure2 =} \FunctionTok{as.factor}\NormalTok{(Measure2), }\CommentTok{\#Corregimos Measure2}
+         \AttributeTok{Measure3 =} \FunctionTok{as.factor}\NormalTok{(Measure3), }\CommentTok{\#Corregimos Measure3 }
+         \AttributeTok{Failure =} \FunctionTok{as.factor}\NormalTok{(Failure), }\CommentTok{\#estaba en caracter}
+         \AttributeTok{Operator =} \FunctionTok{as.factor}\NormalTok{(Operator)) }\SpecialCharTok{\%\textgreater{}\%}  \CommentTok{\#estaba en caracter}
+  \FunctionTok{filter}\NormalTok{(Temperature }\SpecialCharTok{\textgreater{}} \DecValTok{50}\NormalTok{) }\CommentTok{\#eliminamos los 4 atípicos de temperature}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{anuxe1lisis-exploratorio-de-variables-eda}{%
+\subsection{5.Análisis exploratorio de variables
+(EDA)}\label{anuxe1lisis-exploratorio-de-variables-eda}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Exploramos las de tipo factor}
+\DocumentationTok{\#\# creo que es grafica de barras}
+\CommentTok{\# facet\_wrap(\textasciitilde{}key,scales=\textquotesingle{}free\textquotesingle{}) = que me saque tantos graficos como variables tenemos}
+
+\NormalTok{DataSetFallosMaquina }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select\_if}\NormalTok{(is.factor) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#libr tidy,oden hor a vert}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(value)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{key,}\AttributeTok{scales=}\StringTok{\textquotesingle{}free\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text=}\FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{6}\NormalTok{))}\CommentTok{\#esto es para cambiar el tamaño del texto del eje y que se lea bien}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: attributes are not identical across measure variables; they will be
+## dropped
+\end{verbatim}
+
+\includegraphics{1_video_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# RESULTADOS:}
+\CommentTok{\# se observa que en la primera variable no estan balanceadas las respuestas}
+\CommentTok{\# Se obserVa que tenemos 8 operadores distintos pero el 2 tiene el doble de medidas que el resto}
+
+
+\CommentTok{\#Y las de tipo entero:}
+\DocumentationTok{\#\# creo que es grafico de densidad, es decir una linea que muestra el comportamiento de cada variable}
+
+\NormalTok{DataSetFallosMaquina }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select\_if}\NormalTok{(is.integer) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(value)) }\SpecialCharTok{+} \FunctionTok{geom\_density}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{key,}\AttributeTok{scales=}\StringTok{\textquotesingle{}free\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text=}\FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{6}\NormalTok{))}\CommentTok{\#esto es para cambiar el tamaño del texto del eje y que se lea bien}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1_video_files/figure-latex/unnamed-chunk-7-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#RESULTADOS:}
+\CommentTok{\# Son 16 variables}
+\CommentTok{\# El numero de horas desde que se produjo el fallo previo, a principio pocas horas hay mucha frecuencia y hay un punto de corte a partir del cual el resto de horas desde el fallo previo son cada vez menos frecuente, antes dhttp://127.0.0.1:42019/graphics/plot\_zoom\_png?width=1366\&height=705e las 70 horas las maquinas no fallan y despues se produce un fallo y cada vez hay menos maquinas que duren 500 horas sin tener un fallo}
+\CommentTok{\#humedad distribucion a la de una normal.}
+\CommentTok{\#las medidas de los sensores se distribuyen de manera similar.}
+\CommentTok{\#En la temperatura se ven los valores atipicos de la parte de arriba y la temperatura oscila entre 50{-}75 grados de la maquina.}
+
+\CommentTok{\#Hacemos análisis de correlaciones}
+\NormalTok{DataSetFallosMaquina }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select\_if}\NormalTok{(is.integer) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{cor}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{round}\NormalTok{(}\AttributeTok{digits =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                              Temperature Humidity Measure1 Measure4 Measure5
+## Temperature                         1.00    -0.05     0.00    -0.02     0.01
+## Humidity                           -0.05     1.00     0.00     0.00    -0.03
+## Measure1                            0.00     0.00     1.00     0.00     0.01
+## Measure4                           -0.02     0.00     0.00     1.00     0.00
+## Measure5                            0.01    -0.03     0.01     0.00     1.00
+## Measure6                           -0.01    -0.01     0.01     0.02     0.00
+## Measure7                           -0.01    -0.02     0.00    -0.01     0.00
+## Measure8                            0.00     0.01     0.00     0.01    -0.01
+## Measure9                           -0.02     0.00    -0.01     0.01     0.00
+## Measure10                          -0.01     0.00     0.01     0.00    -0.01
+## Measure11                           0.01     0.03     0.00     0.01     0.01
+## Measure12                           0.00    -0.02    -0.01     0.02     0.01
+## Measure13                          -0.01    -0.02    -0.01    -0.02     0.01
+## Measure14                          -0.01     0.00     0.00    -0.01     0.02
+## Measure15                          -0.01    -0.02    -0.01     0.00     0.00
+## Hours.Since.Previous.Failure       -0.01     0.00     0.00    -0.02     0.00
+##                              Measure6 Measure7 Measure8 Measure9 Measure10
+## Temperature                     -0.01    -0.01     0.00    -0.02     -0.01
+## Humidity                        -0.01    -0.02     0.01     0.00      0.00
+## Measure1                         0.01     0.00     0.00    -0.01      0.01
+## Measure4                         0.02    -0.01     0.01     0.01      0.00
+## Measure5                         0.00     0.00    -0.01     0.00     -0.01
+## Measure6                         1.00     0.00     0.00     0.01      0.01
+## Measure7                         0.00     1.00     0.00     0.00     -0.01
+## Measure8                         0.00     0.00     1.00     0.01     -0.02
+## Measure9                         0.01     0.00     0.01     1.00      0.00
+## Measure10                        0.01    -0.01    -0.02     0.00      1.00
+## Measure11                        0.00     0.01    -0.02     0.01      0.01
+## Measure12                        0.02     0.00     0.00     0.02      0.01
+## Measure13                       -0.01     0.00     0.00    -0.01      0.01
+## Measure14                       -0.01     0.01    -0.02     0.00      0.00
+## Measure15                       -0.01    -0.01     0.01     0.02     -0.02
+## Hours.Since.Previous.Failure    -0.01     0.00     0.01     0.00     -0.01
+##                              Measure11 Measure12 Measure13 Measure14 Measure15
+## Temperature                       0.01      0.00     -0.01     -0.01     -0.01
+## Humidity                          0.03     -0.02     -0.02      0.00     -0.02
+## Measure1                          0.00     -0.01     -0.01      0.00     -0.01
+## Measure4                          0.01      0.02     -0.02     -0.01      0.00
+## Measure5                          0.01      0.01      0.01      0.02      0.00
+## Measure6                          0.00      0.02     -0.01     -0.01     -0.01
+## Measure7                          0.01      0.00      0.00      0.01     -0.01
+## Measure8                         -0.02      0.00      0.00     -0.02      0.01
+## Measure9                          0.01      0.02     -0.01      0.00      0.02
+## Measure10                         0.01      0.01      0.01      0.00     -0.02
+## Measure11                         1.00     -0.01      0.00      0.01      0.01
+## Measure12                        -0.01      1.00      0.01      0.00      0.01
+## Measure13                         0.00      0.01      1.00      0.01      0.01
+## Measure14                         0.01      0.00      0.01      1.00      0.01
+## Measure15                         0.01      0.01      0.01      0.01      1.00
+## Hours.Since.Previous.Failure      0.00     -0.02      0.01      0.00     -0.01
+##                              Hours.Since.Previous.Failure
+## Temperature                                         -0.01
+## Humidity                                             0.00
+## Measure1                                             0.00
+## Measure4                                            -0.02
+## Measure5                                             0.00
+## Measure6                                            -0.01
+## Measure7                                             0.00
+## Measure8                                             0.01
+## Measure9                                             0.00
+## Measure10                                           -0.01
+## Measure11                                            0.00
+## Measure12                                           -0.02
+## Measure13                                            0.01
+## Measure14                                            0.00
+## Measure15                                           -0.01
+## Hours.Since.Previous.Failure                         1.00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# normalmente queremos que las variables no se correlacionen, tecnica de regresion logistica, supuesto es que las variables independientes no correlacionen entre si, en la realidad no se cumple, pero sirve para ver hasta que punto no se cumple. En caso de que relacionen se pueden quitar variables o crear variables sintenticas en vez de las que estan correlacionadas, etc}
+\CommentTok{\# variables no correlacionan entre si y las puedo meter en mi modelo de regresion.}
+
+\CommentTok{\#Hacemos un zoom sobre el desbalanceo de la variable target}
+\FunctionTok{table}\NormalTok{(DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{Failure) }\CommentTok{\#desbalanceo}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##   No  Yes 
+## 8699   81
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# variable target que es la que queremos predecir}
+\end{Highlighting}
+\end{Shaded}
+
+Conclusiones:
+
+No se perciben patrones raros en las variables en genera Las variables
+de medidas no correlacionan La variable target está muy desbalanceada
+
+\hypertarget{transformaciuxf3n-de-variables}{%
+\subsection{6.Transformación de
+variables}\label{transformaciuxf3n-de-variables}}
+
+No son necesarias grandes transformaciones porque el fichero ya viene
+muy limpio (no pasa así en la realidad)
+
+Tampoco vamos a crear variables sintéticas (nuevas variables) que sí
+haríamos en la realidad (por ej número de fallos del mismo equipo, etc.)
+
+Pero sí vamos a tener que trabajar sobre el balanceo de la variable
+target
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#hay tecnicas de sobremuestreos "cojo el conjunto de datos y cojo los yes y los aumento artificialmente"y de inframuestreos "tengo 1\%, elimino los no aleatoriomente, me quedaria la proporcion 80{-}20"}
+\CommentTok{\#Vamos a balancear usando la técnica del inframuestreo:}
+\CommentTok{\#Esto se hace para que el modelo no se acomode y no me diga siempre que no va a haber un fallo., por ende se balancea para que por lo menos haya un 80{-}20.}
+\CommentTok{\#Comprobamos la penetración exacta de la target}
+\CommentTok{\#Tenemos 81 yes que sobre el total de casos son un 0,9\%:}
+\DecValTok{81}\SpecialCharTok{/}\FunctionTok{nrow}\NormalTok{(DataSetFallosMaquina) }\SpecialCharTok{*} \DecValTok{100} \CommentTok{\#0.9\% son del si}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9225513
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Para tener casi un 10\% necesitaríamos incrementar la proporción aprox en x10}
+\CommentTok{\#Entonces vamos a reducir los nos para que salga aprox esa proporción}
+\CommentTok{\#Nuevo df de nos}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{) }\CommentTok{\#para que nos salga lo mismo, semilla}
+\NormalTok{df\_nos }\OtherTok{\textless{}{-}}\NormalTok{ DataSetFallosMaquina }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#solo los "no"}
+  \FunctionTok{filter}\NormalTok{(Failure }\SpecialCharTok{==} \StringTok{\textquotesingle{}No\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{sample\_frac}\NormalTok{(}\AttributeTok{size =} \FloatTok{0.08}\NormalTok{) }\CommentTok{\#crea una muestra en funcion de esa proporcion, para que me salga una proporcion del "yes" del 10\%. 8699*0.08= 695 casos aleatorios}
+\FunctionTok{dim}\NormalTok{(df\_nos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 696  20
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Df de sis}
+\NormalTok{df\_sis }\OtherTok{\textless{}{-}}\NormalTok{ DataSetFallosMaquina }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Failure }\SpecialCharTok{==} \StringTok{\textquotesingle{}Yes\textquotesingle{}}\NormalTok{) }\CommentTok{\#los que si han tenido fallos}
+
+\CommentTok{\#Y los unimos de nuevo en un nuevo df reducido}
+\NormalTok{df\_red }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(df\_nos,df\_sis) }\CommentTok{\#unir esos dos ficheros}
+
+\CommentTok{\#Comprobamos de nuevo la penetación de la target}
+\FunctionTok{count}\NormalTok{(df\_red,Failure) }\CommentTok{\#696 no y \#81 si}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Failure   n
+## 1      No 696
+## 2     Yes  81
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{81}\SpecialCharTok{/}\FunctionTok{nrow}\NormalTok{(df\_red) }\SpecialCharTok{*} \DecValTok{100}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10.42471
+\end{verbatim}
+
+Lo que hicimos fue reducir aleatoriamente el conjunto de las mediciones
+que no representan un fallo de las maquinas y crear un nuevo conjunto de
+datos donde las mediciones que representan un fallo de las maquinasienen
+una proporcion del 10\% y permite una modelizacion mas robusta. Ahora ya
+tenmos un dataset donde la target tiene un 10\% de penetración (que
+sigue siendo poco pero lo dejaremos así)
+
+7.Modelización
+
+7.1 Dividir en entrentamiento y validación: No lo vamos a hacer por
+simplicidad y porque tenemos pocos casos
+
+Nota:usamos por ejemplo el 70\% de los datos y validamos el resto con
+nuestro modelo.
+
+7.2 Roles de las variables
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{target }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}Failure\textquotesingle{}} \CommentTok{\#V objetiva}
+\NormalTok{indep }\OtherTok{\textless{}{-}} \FunctionTok{names}\NormalTok{(df\_red)[}\SpecialCharTok{{-}}\DecValTok{20}\NormalTok{] }\CommentTok{\#la variable 20 es Failure y la saca}
+\NormalTok{formula }\OtherTok{\textless{}{-}} \FunctionTok{reformulate}\NormalTok{(indep,target) }\CommentTok{\#construye la formula}
+\end{Highlighting}
+\end{Shaded}
+
+Vamos a modelizar con una regresión logística, queremos una salida entre
+cero y uno, y tenemos una variable target que es entre 0 ``no fallo'' y
+1 ``fallo'', regresion multiple para predecir variables cuantitativas,
+pero tenemos dicotomica. Probabilidad de que se rompa la maquina.
+Transformacion en un numero entre 0 y 1, hay una probabilidad. Tiene
+forma de ``S''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#glm=modelos lineales generalizados, dentro estan las familias, se pasa formula y conjunto de datos. {-}\textgreater{}logistica}
+\NormalTok{rl }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(formula,df\_red,}\AttributeTok{family=}\FunctionTok{binomial}\NormalTok{(}\AttributeTok{link=}\StringTok{\textquotesingle{}logit\textquotesingle{}}\NormalTok{))}
+\FunctionTok{summary}\NormalTok{(rl) }\CommentTok{\#Vemos el resultado}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = formula, family = binomial(link = "logit"), data = df_red)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.5992  -0.2251  -0.0829  -0.0319   3.9472  
+## 
+## Coefficients:
+##                                  Estimate   Std. Error z value      Pr(>|z|)
+## (Intercept)                  -10.71197421   7.57929507  -1.413        0.1576
+## Temperature                    0.51063561   0.08439998   6.050 0.00000000145
+## Humidity                      -0.32864864   0.05593164  -5.876 0.00000000421
+## OperatorOperator2             -1.52872547   0.74583258  -2.050        0.0404
+## OperatorOperator3             -0.94127935   0.78199528  -1.204        0.2287
+## OperatorOperator4             -1.53555593   0.79710060  -1.926        0.0541
+## OperatorOperator5             -1.42656277   0.95686891  -1.491        0.1360
+## OperatorOperator6             -2.01372722   0.87352228  -2.305        0.0212
+## OperatorOperator7             -0.05600171   0.82303039  -0.068        0.9458
+## OperatorOperator8             -1.31565504   1.00509099  -1.309        0.1905
+## Measure1                      -0.00036411   0.00040945  -0.889        0.3739
+## Measure21                     -1.53274137   0.63978822  -2.396        0.0166
+## Measure22                     -0.88252115   0.59137875  -1.492        0.1356
+## Measure23                     -0.48864109   0.57668512  -0.847        0.3968
+## Measure31                      0.07341648   0.51626055   0.142        0.8869
+## Measure32                      0.40173345   0.52981346   0.758        0.4483
+## Measure4                      -0.00012266   0.00037570  -0.326        0.7441
+## Measure5                       0.00062969   0.00039368   1.599        0.1097
+## Measure6                       0.00008513   0.00038514   0.221        0.8251
+## Measure7                       0.00013942   0.00039815   0.350        0.7262
+## Measure8                       0.00072147   0.00041811   1.726        0.0844
+## Measure9                      -0.00022261   0.00040967  -0.543        0.5869
+## Measure10                      0.00102269   0.00042532   2.405        0.0162
+## Measure11                     -0.00032465   0.00039685  -0.818        0.4133
+## Measure12                      0.00002618   0.00042355   0.062        0.9507
+## Measure13                      0.00023410   0.00040261   0.581        0.5609
+## Measure14                      0.00026506   0.00039471   0.672        0.5019
+## Measure15                      0.00017387   0.00040795   0.426        0.6700
+## Hours.Since.Previous.Failure  -0.00141645   0.00138640  -1.022        0.3069
+##                                 
+## (Intercept)                     
+## Temperature                  ***
+## Humidity                     ***
+## OperatorOperator2            *  
+## OperatorOperator3               
+## OperatorOperator4            .  
+## OperatorOperator5               
+## OperatorOperator6            *  
+## OperatorOperator7               
+## OperatorOperator8               
+## Measure1                        
+## Measure21                    *  
+## Measure22                       
+## Measure23                       
+## Measure31                       
+## Measure32                       
+## Measure4                        
+## Measure5                        
+## Measure6                        
+## Measure7                        
+## Measure8                     .  
+## Measure9                        
+## Measure10                    *  
+## Measure11                       
+## Measure12                       
+## Measure13                       
+## Measure14                       
+## Measure15                       
+## Hours.Since.Previous.Failure    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 519.53  on 776  degrees of freedom
+## Residual deviance: 187.39  on 748  degrees of freedom
+## AIC: 245.39
+## 
+## Number of Fisher Scoring iterations: 8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# * la variable va a ser predictora a un nivel de significancia de 95\%}
+\CommentTok{\# variables que tienen capacidad para predecir el fallo de una maquina: temperatura, humedad, operador "como es categorica la divide en 8 diferentes tipos {-} solo significativo el 2 y 6", sensor 21 y el 10.}
+\end{Highlighting}
+\end{Shaded}
+
+Sólo resultan predictivas al menos al 95\% tres variables, que vamos a
+seleccionar como finales ``segun el video'', por nuestra parte 6
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{indep\_fin }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Temperature\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Humidity\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Measure9\textquotesingle{}}\NormalTok{)}
+\NormalTok{indep\_fin2}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Temperature\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Humidity\textquotesingle{}}\NormalTok{,}
+              \StringTok{\textquotesingle{}Measure10\textquotesingle{}}\NormalTok{) }\CommentTok{\#operator no salieron y measure21 tampoco}
+\NormalTok{formula }\OtherTok{\textless{}{-}} \FunctionTok{reformulate}\NormalTok{(indep\_fin,target) }\CommentTok{\#actualizamos la fórmula}
+\NormalTok{formula2 }\OtherTok{\textless{}{-}} \FunctionTok{reformulate}\NormalTok{(indep\_fin2,target)}
+\end{Highlighting}
+\end{Shaded}
+
+Y volvemos a modelizar
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rl }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(formula,df\_red,}\AttributeTok{family=}\FunctionTok{binomial}\NormalTok{(}\AttributeTok{link=}\StringTok{\textquotesingle{}logit\textquotesingle{}}\NormalTok{))}
+\FunctionTok{summary}\NormalTok{(rl) }\CommentTok{\#Vemos el resultado}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = formula, family = binomial(link = "logit"), data = df_red)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.4447  -0.2574  -0.1236  -0.0566   3.3467  
+## 
+## Coefficients:
+##                Estimate  Std. Error z value       Pr(>|z|)    
+## (Intercept) -10.6798289   7.0863781  -1.507          0.132    
+## Temperature   0.4700295   0.0759195   6.191 0.000000000597 ***
+## Humidity     -0.2814188   0.0451640  -6.231 0.000000000463 ***
+## Measure9     -0.0004273   0.0003521  -1.214          0.225    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 519.53  on 776  degrees of freedom
+## Residual deviance: 217.20  on 773  degrees of freedom
+## AIC: 225.2
+## 
+## Number of Fisher Scoring iterations: 7
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rl2 }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(formula2,df\_red,}\AttributeTok{family=}\FunctionTok{binomial}\NormalTok{(}\AttributeTok{link=}\StringTok{\textquotesingle{}logit\textquotesingle{}}\NormalTok{))}
+\FunctionTok{summary}\NormalTok{(rl2) }\CommentTok{\#Vemos el resultado}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = formula2, family = binomial(link = "logit"), data = df_red)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.6883  -0.2502  -0.1212  -0.0518   3.3550  
+## 
+## Coefficients:
+##                Estimate  Std. Error z value       Pr(>|z|)    
+## (Intercept) -13.4330433   7.0793333  -1.898         0.0578 .  
+## Temperature   0.4844847   0.0765938   6.325 0.000000000253 ***
+## Humidity     -0.2764717   0.0446165  -6.197 0.000000000577 ***
+## Measure10     0.0008466   0.0003605   2.348         0.0189 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 519.53  on 776  degrees of freedom
+## Residual deviance: 212.95  on 773  degrees of freedom
+## AIC: 220.95
+## 
+## Number of Fisher Scoring iterations: 7
+\end{verbatim}
+
+Aplicamos nuestro modelo a los datos
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#predecir la probaibilidad}
+\NormalTok{DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{scoring }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(rl,DataSetFallosMaquina,}\AttributeTok{type=}\StringTok{\textquotesingle{}response\textquotesingle{}}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{scoring)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.08520948 0.31437136 0.07298674 0.01564100 0.03343203 0.02451204
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#medicion1 tiene un 8\% de que la maquina se estropee}
+
+\NormalTok{DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{scoring2 }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(rl2,DataSetFallosMaquina,}\AttributeTok{type=}\StringTok{\textquotesingle{}response\textquotesingle{}}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{scoring2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.07263425 0.17235996 0.03891229 0.02267770 0.04633681 0.02204517
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#medicion1 tiene un 7\% de que la maquina se estropee de todas las variables}
+\end{Highlighting}
+\end{Shaded}
+
+Tomamos la decisión de si pensamos que será un fallo o no
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Como la penetración inicial era del 1\%, vamos a poner un punto de corte muy alto, por ejemplo por encima del 80\%}
+\NormalTok{DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{prediccion }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{scoring }\SpecialCharTok{\textgreater{}} \FloatTok{0.8}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+
+\NormalTok{DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{prediccion2 }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{scoring2 }\SpecialCharTok{\textgreater{}} \FloatTok{0.8}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{prediccion2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0 0 0 0 0 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{table}\NormalTok{(DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{prediccion2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##    0    1 
+## 8730   50
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# como antes lo primeros datos, no era el 10\%, pues nunca se dañaria la maquina}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Evaluación del modelo Vamos a contrastar la predicción contra la
+  realidad.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{table}\NormalTok{(DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{prediccion,DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{Failure)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    
+##       No  Yes
+##   0 8699   33
+##   1    0   48
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{table}\NormalTok{(DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{prediccion2,DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{Failure)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    
+##       No  Yes
+##   0 8698   32
+##   1    1   49
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#filas es lo que el modelo predice que no y en la segunda fila que si }
+\CommentTok{\#matriz de confusion}
+\end{Highlighting}
+\end{Shaded}
+
+De todos los que predigo que van a fallar la mayoría fallan, pero
+también me estoy dejando muchos fallos en el tintero por ser tan
+conservador
+
+Y si fueramos menos exigentes y pusiéramos el corte un poco más abajo?
+
+Tomamos la decisión de si pensamos que será un fallo o no
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Vamos a ver qué pasa si bajamos la decisión al 60\%}
+\NormalTok{DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{prediccion }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{scoring }\SpecialCharTok{\textgreater{}} \FloatTok{0.6}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+\NormalTok{DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{prediccion2 }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{scoring2 }\SpecialCharTok{\textgreater{}} \FloatTok{0.6}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Vamos a contrastar la predicción contra la realidad
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{table}\NormalTok{(DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{prediccion,DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{Failure)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    
+##       No  Yes
+##   0 8694   25
+##   1    5   56
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{table}\NormalTok{(DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{prediccion2,DataSetFallosMaquina}\SpecialCharTok{$}\NormalTok{Failure)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    
+##       No  Yes
+##   0 8693   23
+##   1    6   58
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#se incrementa el numero de veces que el modelo dice que va a fallar y la maquina falla.}
+\CommentTok{\#se reduce el numero de veces que el modelo dice que no va a fallar y la maquina dice que si ha fallado}
+\CommentTok{\#incrementando el error cuando el modelo dice que va a fallar y en la realidad no fallo "6" {-} menos exigentes, cometemos mas falsos positivos}
+\CommentTok{\# En 6 de la ocasiones vamos a decir que si falla mandamos operarios y esa operacion no pudo haber sido necesaria porque lo que dice la realidad es que no hubiera fallado la maquina}
+\end{Highlighting}
+\end{Shaded}
+
+Notas extras: Otros proyectos que permiten hacer un machine learning
+predictivo son: - mantenimiento preventivo - incrementar ventas en
+campañas comerciales - prevencion de abandono - analisis de riesgo de
+impago - localizacion de fraude - automatizacion de procesos
+
+Queda pendiente: Como crear modelos con otros algoritmos como arboles de
+decision, random forest metricas avanzadas de evaluacion como ROC,
+precision, cobertura
+
+\end{document}
