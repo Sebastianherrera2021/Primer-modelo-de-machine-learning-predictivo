@@ -1,0 +1,332 @@
+---
+title: "DS4B"
+author: "jshs"
+date: "2023-03-18"
+output:
+  pdf_document: default
+  html_document: default
+editor_options:
+  chunk_output_type: console
+---
+
+# Primer modelo de machine learning predictivo
+
+## Enfoque con un perfil de negocio.
+
+- Se analizara desde la practica
+- No habra mucha formula matematica, pero si se usaran algoritmos y se veran sus usos en la practica.
+- Evidencia empirica.
+
+## Preguntas validas para hacerse:
+
+- ¿El por que de cada tecnica, cuando hay que aplicarla, como interpretar sus resultados, etc?
+- El valor estaba en la parte practica.
+- Saber lo que se quiere.
+
+## A parte de machine learning predictivo (habilidad mas demandada) la ciencia de datos abarca:
+
+- Analitica
+- Machine learning
+- Estadistica "profundizar en cartografia"
+- Ciencias de computacion
+- Comunicacion
+- Matematicas
+- Visualizacion
+- IA
+- Deep learning
+- Ingenieria de datos
+
+Claves:
+- Prevencion de abandono de clientes
+- campañas comerciales personalizadas para cada cliente
+- Scoring de riesgos
+- Identificacion de fraude
+- Mantenimiento preventivo
+
+Nota: Simbolo tuerca y chunk output in console
+
+### 0. Opciones generales:
+
+```{r}
+options(scipen=999) #desactiva la notacion cientifica. "El numero sale tal cual"
+```
+
+## 1. Instalamos y cargamos las librerias necesarias:
+
+```{r}
+#Instalar librerías
+#install.packages('dplyr') #para manipular datos
+#install.packages('skimr') #para exploración inicial
+#install.packages('lubridate') #para manipular fechas
+#install.packages('tidyr') #para manipular datos
+#install.packages('ggplot2') #para hacer gráficos
+
+#Cargar librerías
+library(dplyr)
+library(skimr)
+library(lubridate)
+library(tidyr)
+library(ggplot2)
+```
+
+### CONTEXTO DEL NEGOCIO
+
+Es un caso de mantenimiento preventivo, consiste en predecir con una serie de sensores y variables de cada maquina, cuando una maquina se va a estropiar o no y no esperar a que se dañe. 
+
+### Metodologias para la modelizacion avanzada de datos: (En este caso modo horizontal, cada fase tiene mas en vertical pero no se abarcaran en este proyecto)
+
+- Importacion y muestreo
+- Calidad de los datos
+- Transformacion
+- Modelizacion
+- Evaluacion
+- Implantacion
+
+## 2. Cargamos los datos
+
+```{r}
+library(readr)
+DataSetFallosMaquina <- read.csv("C:/Users/LAURA/Desktop/cursos data science/isaac_data_science/DataSetFallosMaquina.csv", 
+    sep = ";")
+View(DataSetFallosMaquina)
+```
+
+## 3.Analisis inicial
+```{r}
+glimpse(DataSetFallosMaquina) #vision de todas las variables, tipo, numero de filas y numero de columnas
+skim(DataSetFallosMaquina) #estadisticas basicas y grafica de distribucion de cada variable
+#knitr::kable(skim(DataSetFallosMaquina))
+```
+
+Conclusiones de ese primer analisis inicial:
+- No hay datos nulos
+Problemas con tipos de variables:
+- Measure 2 y measure 3 tambien parecen mas factores que enteros (lo indica el grafico ya que tienen valores distintos)
+- El minimo y el segundo cuartil de temperatura parece que hay dats atipicos, el primero es 5 y ya el segundo son 62 mientras que en el 3 son 64, esto nos indica que la distribucion puede estar sesgada y escolada hacia la derecha, puede haber un valor muy bajo de temperatura pero normalmente oscila entre 62 - 78
+
+## 3.1 Analizamos en mayor detalle la temperatura
+
+```{r}
+attach(DataSetFallosMaquina)
+ggplot(DataSetFallosMaquina,x=1) + geom_boxplot(aes(y=Temperature)) #tipo de grafico diagrama de cajas, distribucion llamada aes.
+```
+
+Nota: Se puede haber que hay cuatro datos que se estan saliendo de los rangos de temperatura
+
+## 4.Calidad de datos
+
+```{r}
+#Corregimos los tipos de variables y los atípicos
+#mutate para crear variables o para corregir las que tenemos.
+# %>% ese simbolo es para encadenar instrucciones una de tras de otra, podemos hacer cuatro cosas seguidas e ir poniendo el simbolo
+
+DataSetFallosMaquina <- DataSetFallosMaquina %>%
+  mutate(Measure2 = as.factor(Measure2), #Corregimos Measure2
+         Measure3 = as.factor(Measure3), #Corregimos Measure3 
+         Failure = as.factor(Failure), #estaba en caracter
+         Operator = as.factor(Operator)) %>%  #estaba en caracter
+  filter(Temperature > 50) #eliminamos los 4 atípicos de temperature
+```
+
+## 5.Análisis exploratorio de variables (EDA)
+
+```{r}
+#Exploramos las de tipo factor
+## creo que es grafica de barras
+# facet_wrap(~key,scales='free') = que me saque tantos graficos como variables tenemos
+
+DataSetFallosMaquina %>%
+  select_if(is.factor) %>%
+  gather() %>% #libr tidy,oden hor a vert
+  ggplot(aes(value)) + geom_bar() + facet_wrap(~key,scales='free') +
+  theme(axis.text=element_text(size=6))#esto es para cambiar el tamaño del texto del eje y que se lea bien
+
+# RESULTADOS:
+# se observa que en la primera variable no estan balanceadas las respuestas
+# Se obserVa que tenemos 8 operadores distintos pero el 2 tiene el doble de medidas que el resto
+
+
+#Y las de tipo entero:
+## creo que es grafico de densidad, es decir una linea que muestra el comportamiento de cada variable
+
+DataSetFallosMaquina %>%
+  select_if(is.integer) %>%
+  gather() %>%
+  ggplot(aes(value)) + geom_density() + facet_wrap(~key,scales='free') +
+  theme(axis.text=element_text(size=6))#esto es para cambiar el tamaño del texto del eje y que se lea bien
+
+#RESULTADOS:
+# Son 16 variables
+# El numero de horas desde que se produjo el fallo previo, a principio pocas horas hay mucha frecuencia y hay un punto de corte a partir del cual el resto de horas desde el fallo previo son cada vez menos frecuente, antes dhttp://127.0.0.1:42019/graphics/plot_zoom_png?width=1366&height=705e las 70 horas las maquinas no fallan y despues se produce un fallo y cada vez hay menos maquinas que duren 500 horas sin tener un fallo
+#humedad distribucion a la de una normal.
+#las medidas de los sensores se distribuyen de manera similar.
+#En la temperatura se ven los valores atipicos de la parte de arriba y la temperatura oscila entre 50-75 grados de la maquina.
+
+#Hacemos análisis de correlaciones
+DataSetFallosMaquina %>%
+  select_if(is.integer) %>%
+  cor() %>% 
+  round(digits = 2)
+# normalmente queremos que las variables no se correlacionen, tecnica de regresion logistica, supuesto es que las variables independientes no correlacionen entre si, en la realidad no se cumple, pero sirve para ver hasta que punto no se cumple. En caso de que relacionen se pueden quitar variables o crear variables sintenticas en vez de las que estan correlacionadas, etc
+# variables no correlacionan entre si y las puedo meter en mi modelo de regresion.
+
+#Hacemos un zoom sobre el desbalanceo de la variable target
+table(DataSetFallosMaquina$Failure) #desbalanceo
+# variable target que es la que queremos predecir
+```
+
+Conclusiones:
+
+No se perciben patrones raros en las variables en genera
+Las variables de medidas no correlacionan
+La variable target está muy desbalanceada
+
+## 6.Transformación de variables
+No son necesarias grandes transformaciones porque el fichero ya viene muy limpio (no pasa así en la realidad)
+
+Tampoco vamos a crear variables sintéticas (nuevas variables) que sí haríamos en la realidad (por ej número de fallos del mismo equipo, etc.)
+
+Pero sí vamos a tener que trabajar sobre el balanceo de la variable target
+
+```{r}
+#hay tecnicas de sobremuestreos "cojo el conjunto de datos y cojo los yes y los aumento artificialmente"y de inframuestreos "tengo 1%, elimino los no aleatoriomente, me quedaria la proporcion 80-20"
+#Vamos a balancear usando la técnica del inframuestreo:
+#Esto se hace para que el modelo no se acomode y no me diga siempre que no va a haber un fallo., por ende se balancea para que por lo menos haya un 80-20.
+#Comprobamos la penetración exacta de la target
+#Tenemos 81 yes que sobre el total de casos son un 0,9%:
+81/nrow(DataSetFallosMaquina) * 100 #0.9% son del si
+
+#Para tener casi un 10% necesitaríamos incrementar la proporción aprox en x10
+#Entonces vamos a reducir los nos para que salga aprox esa proporción
+#Nuevo df de nos
+set.seed(1234) #para que nos salga lo mismo, semilla
+df_nos <- DataSetFallosMaquina %>% #solo los "no"
+  filter(Failure == 'No') %>%
+  sample_frac(size = 0.08) #crea una muestra en funcion de esa proporcion, para que me salga una proporcion del "yes" del 10%. 8699*0.08= 695 casos aleatorios
+dim(df_nos)
+
+#Df de sis
+df_sis <- DataSetFallosMaquina %>% filter(Failure == 'Yes') #los que si han tenido fallos
+
+#Y los unimos de nuevo en un nuevo df reducido
+df_red <- rbind(df_nos,df_sis) #unir esos dos ficheros
+
+#Comprobamos de nuevo la penetación de la target
+count(df_red,Failure) #696 no y #81 si
+81/nrow(df_red) * 100
+```
+
+Lo que hicimos fue reducir aleatoriamente el conjunto de las mediciones que no representan un fallo de las maquinas y crear un nuevo conjunto de datos donde las mediciones que representan un fallo de las maquinasienen una proporcion del 10% y permite una modelizacion mas robusta.
+Ahora ya tenmos un dataset donde la target tiene un 10% de penetración (que sigue siendo poco pero lo dejaremos así)
+
+7.Modelización
+
+7.1 Dividir en entrentamiento y validación:
+No lo vamos a hacer por simplicidad y porque tenemos pocos casos
+
+Nota:usamos por ejemplo el 70% de los datos y validamos el resto con nuestro modelo.
+
+7.2 Roles de las variables
+```{r}
+target <- 'Failure' #V objetiva
+indep <- names(df_red)[-20] #la variable 20 es Failure y la saca
+formula <- reformulate(indep,target) #construye la formula
+```
+
+Vamos a modelizar con una regresión logística, queremos una salida entre cero y uno, y tenemos una variable target que es entre 0 "no fallo" y 1 "fallo", regresion multiple para predecir variables cuantitativas, pero tenemos dicotomica. Probabilidad de que se rompa la maquina.
+Transformacion en un numero entre 0 y 1, hay una probabilidad. Tiene forma de "S"
+
+```{r}
+#glm=modelos lineales generalizados, dentro estan las familias, se pasa formula y conjunto de datos. ->logistica
+rl <- glm(formula,df_red,family=binomial(link='logit'))
+summary(rl) #Vemos el resultado
+# * la variable va a ser predictora a un nivel de significancia de 95%
+# variables que tienen capacidad para predecir el fallo de una maquina: temperatura, humedad, operador "como es categorica la divide en 8 diferentes tipos - solo significativo el 2 y 6", sensor 21 y el 10.
+```
+
+Sólo resultan predictivas al menos al 95% tres variables, que vamos a seleccionar como finales "segun el video", por nuestra parte 6
+
+```{r}
+indep_fin <- c('Temperature','Humidity','Measure9')
+indep_fin2<-c('Temperature','Humidity',
+              'Measure10') #operator no salieron y measure21 tampoco
+formula <- reformulate(indep_fin,target) #actualizamos la fórmula
+formula2 <- reformulate(indep_fin2,target)
+```
+
+Y volvemos a modelizar
+
+```{r}
+rl <- glm(formula,df_red,family=binomial(link='logit'))
+summary(rl) #Vemos el resultado
+rl2 <- glm(formula2,df_red,family=binomial(link='logit'))
+summary(rl2) #Vemos el resultado
+```
+
+Aplicamos nuestro modelo a los datos
+
+```{r}
+#predecir la probaibilidad
+DataSetFallosMaquina$scoring <- predict(rl,DataSetFallosMaquina,type='response')
+head(DataSetFallosMaquina$scoring)
+#medicion1 tiene un 8% de que la maquina se estropee
+
+DataSetFallosMaquina$scoring2 <- predict(rl2,DataSetFallosMaquina,type='response')
+head(DataSetFallosMaquina$scoring2)
+#medicion1 tiene un 7% de que la maquina se estropee de todas las variables
+```
+
+Tomamos la decisión de si pensamos que será un fallo o no
+```{r}
+#Como la penetración inicial era del 1%, vamos a poner un punto de corte muy alto, por ejemplo por encima del 80%
+DataSetFallosMaquina$prediccion <- ifelse(DataSetFallosMaquina$scoring > 0.8,1,0)
+
+DataSetFallosMaquina$prediccion2 <- ifelse(DataSetFallosMaquina$scoring2 > 0.8,1,0)
+head(DataSetFallosMaquina$prediccion2)
+table(DataSetFallosMaquina$prediccion2)
+# como antes lo primeros datos, no era el 10%, pues nunca se dañaria la maquina
+```
+
+8. Evaluación del modelo
+Vamos a contrastar la predicción contra la realidad.
+
+```{r}
+table(DataSetFallosMaquina$prediccion,DataSetFallosMaquina$Failure)
+table(DataSetFallosMaquina$prediccion2,DataSetFallosMaquina$Failure)
+#filas es lo que el modelo predice que no y en la segunda fila que si 
+#matriz de confusion
+```
+
+De todos los que predigo que van a fallar la mayoría fallan, pero también me estoy dejando muchos fallos en el tintero por ser tan conservador
+
+Y si fueramos menos exigentes y pusiéramos el corte un poco más abajo?
+
+Tomamos la decisión de si pensamos que será un fallo o no
+```{r}
+#Vamos a ver qué pasa si bajamos la decisión al 60%
+DataSetFallosMaquina$prediccion <- ifelse(DataSetFallosMaquina$scoring > 0.6,1,0)
+DataSetFallosMaquina$prediccion2 <- ifelse(DataSetFallosMaquina$scoring2 > 0.6,1,0)
+```
+
+Vamos a contrastar la predicción contra la realidad
+```{r}
+table(DataSetFallosMaquina$prediccion,DataSetFallosMaquina$Failure)
+table(DataSetFallosMaquina$prediccion2,DataSetFallosMaquina$Failure)
+#se incrementa el numero de veces que el modelo dice que va a fallar y la maquina falla.
+#se reduce el numero de veces que el modelo dice que no va a fallar y la maquina dice que si ha fallado
+#incrementando el error cuando el modelo dice que va a fallar y en la realidad no fallo "6" - menos exigentes, cometemos mas falsos positivos
+# En 6 de la ocasiones vamos a decir que si falla mandamos operarios y esa operacion no pudo haber sido necesaria porque lo que dice la realidad es que no hubiera fallado la maquina
+```
+
+Notas extras:
+Otros proyectos que permiten hacer un machine learning predictivo son:
+- mantenimiento preventivo
+- incrementar ventas en campañas comerciales
+- prevencion de abandono
+- analisis de riesgo de impago
+- localizacion de fraude
+- automatizacion de procesos
+
+Queda pendiente:
+Como crear modelos con otros algoritmos como arboles de decision, random forest
+metricas avanzadas de evaluacion como ROC, precision, cobertura
